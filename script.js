@@ -80,7 +80,7 @@ var geocode = {
 
     getlocation: function(){
         function success (data){
-            geocode.reverseGeocode(51,7);
+            geocode.reverseGeocode(data.coords.latitude,data.coords.longitude);
         }
 
         if(navigator.geolocation){
