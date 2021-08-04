@@ -22,6 +22,7 @@ var weather = {
         document.querySelector(".humidity").innerHTML = "Humidity: " + humidity + "%";
         document.querySelector(".wind").innerHTML = "Wind Speed: " + speed + "km/h";
         document.querySelector(".weather").classList.remove("loading");
+        document.querySelector("body").classList.remove("foranimation");
         document.body.style.backgroundImage = "url('https://source.unsplash.com/1600x900/?"+name+"')";
     },
     search: function(){
@@ -55,8 +56,7 @@ var geocode = {
           if (request.status === 200){ 
             // Success!
             var data = JSON.parse(request.responseText);
-            console.log(data.results[0]);
-            // weather.fetchweather(data.results[0].components.city);
+            weather.fetchweather(data.results[0].components.city);
       
           } else if (request.status <= 500){ 
             // We reached our target server, but it returned an error
@@ -80,7 +80,7 @@ var geocode = {
 
     getlocation: function(){
         function success (data){
-            geocode.reverseGeocode(data.coords.latitude,data.coords.longitude);
+            geocode.reverseGeocode(51,7);
         }
 
         if(navigator.geolocation){
